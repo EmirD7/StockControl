@@ -3,7 +3,6 @@ using Moq;
 using StockControl.Model;
 using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace StockControl.Service.Repository.Tests
 {

@@ -1,10 +1,9 @@
 ﻿using StockControl.CustomException;
 using StockControl.Model;
-using System.Threading.Tasks;
 
 namespace StockControl.Service.Repository
 {
-    public class ItemRepository
+    public class ItemRepository : IItemRepository
     {
         private StockContext context;
 
