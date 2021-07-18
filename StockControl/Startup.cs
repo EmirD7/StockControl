@@ -1,26 +1,24 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StockControl.Service;
 using StockControl.Service.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StockControl
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<StockContext>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -29,17 +27,11 @@ namespace StockControl
             }
             app.UseRouting();
 
-            Service.DatabaseSeeder.Seed(new Model.StockContext()); 
+            DatabaseSeeder.Seed(new StockContext()); 
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    using (var db = new Model.StockContext())
-                    {
-                        await context.Response.WriteAsync(db.Item.First().Id.ToString());
-                    }
-                });
+                endpoints.MapControllers();
             });
         }
     }

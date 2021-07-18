@@ -4,7 +4,7 @@ namespace StockControl.CustomException
 {
    public class InvalidCartException : Exception
     {
-        public InvalidCartException(string message) : base("Invalid cart value: " + message)
+        public InvalidCartException(string message) : base("Invalid cart request value: " + message)
         {
         }
     }

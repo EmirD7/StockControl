@@ -13,7 +13,6 @@ namespace StockControl.Service
             repository = cartRepository;
             this.itemService = itemService;
         }
-
         public void AddCart(Cart cart)
         {
             if (itemService.GetStockCount(cart.ItemId) == 0)

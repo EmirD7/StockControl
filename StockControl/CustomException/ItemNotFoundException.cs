@@ -4,7 +4,7 @@ namespace StockControl.CustomException
 {
     public class ItemNotFoundException : Exception
     {
-        public ItemNotFoundException(int itemId) : base("Item not found for given id" + itemId)
+        public ItemNotFoundException(int itemId) : base("Item not found for given item id: " + itemId)
         {
         }
     }

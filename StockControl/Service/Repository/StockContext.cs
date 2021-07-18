@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StockControl.Model;
 
-namespace StockControl.Model
+namespace StockControl.Service.Repository
 {
     public class StockContext : DbContext
     {
