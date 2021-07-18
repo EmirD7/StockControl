@@ -33,11 +33,10 @@ namespace StockControl.Controller.Tests
             CartController cartController = new CartController(mockCartService.Object);
 
             Cart cart = new Cart();
-            cart.ItemId = 6;
+            cart.ItemId = -6;
             cart.Quantity = 1;
             cart.UserId = 1;
-            var result = cartController.AddCart(cart) as OkObjectResult;
-            mockCartService.Verify(service => service.AddCart(cart), Times.Once);
+            var result = cartController.AddCart(cart) as BadRequestObjectResult;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);

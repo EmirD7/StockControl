@@ -1,4 +1,5 @@
-﻿using StockControl.Service.Repository;
+﻿using StockControl.Model;
+using StockControl.Service.Repository;
 
 namespace StockControl.Service
 {
@@ -8,7 +9,7 @@ namespace StockControl.Service
             stockContext.Database.EnsureDeleted();
             stockContext.Database.EnsureCreated();
 
-            var item = new Model.Item();
+            var item = new Item();
             item.Id = 5000;
             item.StockCount = 5;
 

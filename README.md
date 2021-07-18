@@ -13,12 +13,17 @@
 
 ### Uygulamayı çalıştırmak için
  - Uygulamanın bulunduğu (DockerFile ve solution dosyalarının bulunduğu) ana dizine gidin.
- - `docker build -t StockControl .` komutunu çalıştırarak Docker image yaratın.
- - `docker run -d -p 8080:80 StockControl` komutunu çalıştırarak image üzerinden container'ı ayağa kaldırın.
- - Tarayıcı üzerinden http://localhost:8080 adresine giderek uygulamaya erişilebilir.
+ - `docker build -t stockcontrol .` komutunu çalıştırarak Docker image yaratın.
+ - `docker run -d -p 8080:80 stockcontrol` komutunu çalıştırarak image üzerinden container'ı ayağa kaldırın.
+ - Postman vb bir uygulama üzerinden aşağıdaki endpoint'e istek gönderilerek uygulamaya erişilebilir.
+ 
+### Ek Bilgiler
+ - Uygulamanın test edilebilmesi için 5000 itemId'li üründen 5 adet stok DatabaseSeeder.cs class'ı ile veritabanına eklenmiştir.
+ - Uygulama, stokta bulunan miktardan fazla ürünü sepete eklemeye izin vermemektedir.
+ - Uygulama, başka kullanıcıların sepetinde olan aynı ürünleri rezerve edilmiş olarak görmekte ve sepetinize eklemeye izin vermemektedir.
 
 ### Endpointler
-#### POST /Cart
+#### POST http://localhost:8080/Cart
 Sepete ürün eklemek için kullanılır
 
 ##### Örnek Request
@@ -27,3 +32,4 @@ Sepete ürün eklemek için kullanılır
 "quantity":"1",
 "userId":"5000"
 }`
+

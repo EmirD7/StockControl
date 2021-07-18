@@ -1,5 +1,4 @@
 ﻿using StockControl.CustomException;
-using StockControl.Model;
 
 namespace StockControl.Service.Repository
 {

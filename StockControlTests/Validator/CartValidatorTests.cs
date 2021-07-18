@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockControl.CustomException;
 using StockControl.Model;
-using StockControl.Validator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StockControl.Validator.Tests
 {
@@ -28,7 +23,7 @@ namespace StockControl.Validator.Tests
             }
             catch (InvalidCartException)
             {
-                Assert.Fail("Girilen parametrelerin hata yaratmamasi beklenmektedir.");
+                Assert.Fail("Not expected invalid cart exception.");
             }
         }
 
@@ -41,7 +36,7 @@ namespace StockControl.Validator.Tests
             cart.UserId = 3;
             cart.TimeStamp = DateTime.Now;
 
-            Assert.ThrowsException<InvalidCartException>(() => CartValidator.Validate(cart), "Girilen parametrenin hata yaratmasi beklenmektedir.");
+            Assert.ThrowsException<InvalidCartException>(() => CartValidator.Validate(cart), "Expected invalid cart exception.");
         }
     }
 }

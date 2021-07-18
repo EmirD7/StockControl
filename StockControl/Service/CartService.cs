@@ -15,8 +15,17 @@ namespace StockControl.Service
         }
         public void AddCart(Cart cart)
         {
-            if (itemService.GetStockCount(cart.ItemId) == 0)
-                throw new NoStockException(cart.ItemId);
+            int stockCount = itemService.GetStockCount(cart.ItemId);
+            int reservedCount = repository.GetReservedItemCount(cart.ItemId);
+
+            if (cart.Quantity > stockCount)
+            {
+                throw new NoStockException(cart.ItemId, stockCount);
+            }
+            else if (cart.Quantity>(stockCount-reservedCount))
+            {
+                throw new StockReservedException(cart.ItemId, (stockCount - reservedCount));
+            }
 
             repository.AddCart(cart);
         }

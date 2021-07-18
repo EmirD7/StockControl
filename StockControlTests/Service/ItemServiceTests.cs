@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using StockControl.Model;
 using System;
 
 namespace StockControl.Service.Repository.Tests
