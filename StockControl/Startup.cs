@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StockControl.Service.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,19 @@ namespace StockControl
                 app.UseDeveloperExceptionPage();
             }
             app.UseRouting();
+
+            Service.DatabaseSeeder.Seed(new Model.StockContext()); 
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/", async context =>
+                {
+                    using (var db = new Model.StockContext())
+                    {
+                        await context.Response.WriteAsync(db.Item.First().Id.ToString());
+                    }
+                });
+            });
         }
     }
 }
